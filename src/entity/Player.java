@@ -29,10 +29,10 @@ public class Player extends Entity {
 
     public void getPlayerSprite() {
         try {
-            right = ImageIO.read(getClass().getResourceAsStream("/images/right.png"));
-            left = ImageIO.read(getClass().getResourceAsStream("/images/left.png"));
-            up = ImageIO.read(getClass().getResourceAsStream("/images/up.png"));
-            down = ImageIO.read(getClass().getResourceAsStream("/images/down.png"));
+            right = ImageIO.read(getClass().getResourceAsStream("/player/right.png"));
+            left = ImageIO.read(getClass().getResourceAsStream("/player/left.png"));
+            up = ImageIO.read(getClass().getResourceAsStream("/player/up.png"));
+            down = ImageIO.read(getClass().getResourceAsStream("/player/down.png"));
         } catch(IOException e) {
             e.printStackTrace();
         }
