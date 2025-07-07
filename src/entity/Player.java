@@ -21,6 +21,8 @@ public class Player extends Entity {
         screenX = gp.screenWidth / 2 - (gp.tileSize/2);
         screenY = gp.screenHeight / 2 - (gp.tileSize/2);
 
+        solidArea = new Rectangle(8, 16, 32, 32);
+
         setDefaultValues();
         getPlayerSprite();
     }
@@ -44,21 +46,41 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if(kh.upPressed) {
-            direction = "up";
-            playerY -= speed;
-        }
-        if(kh.downPressed) {
-            direction = "down";
-            playerY += speed;
-        }
-        if(kh.leftPressed) {
-            direction = "left";
-            playerX -= speed;
-        }
-        if(kh.rightPressed) {
-            direction = "right";
-            playerX += speed;
+        if(kh.upPressed || kh.downPressed || kh.rightPressed || kh.leftPressed) {
+
+            if(kh.upPressed) {
+                direction = "up";
+            }
+            if(kh.downPressed) {
+                direction = "down";
+            }
+            if(kh.leftPressed) {
+                direction = "left";
+            }
+            if(kh.rightPressed) {
+                direction = "right";
+            }
+
+            collisionOn = false;
+            gp.collisionChecker.checkTile(this);
+
+            if(!collisionOn) {
+                switch(direction) {
+                    case "up":
+                        playerY -= speed;
+                        break;
+                    case "down":
+                        playerY += speed;
+                        break;
+                    case "left":
+                        playerX -= speed;
+                        break;
+                    case"right":
+                        playerX += speed;
+                        break;
+                }
+            }
+
         }
     }
 
